@@ -2,14 +2,5 @@
 Building a Production-Grade eCommerce App - Design, develop and deploy a fully functional eCommerce app using Spring Boot, Spring Framework and related tech.
 
 The file structure will be as follows:
-src/
-└── main/
-    └── java/
-        └── com/
-            └── ecommerce/
-                └── demo/
-                    ├── model/            # Domain models (entities)
-                    ├── controller/       # REST controllers (for APIs)
-                    ├── service/          # Business logic layer
-                    ├── repository/       # Data access layer (DAOs)
-                    └── EcommerceApplication.java  # Main application class
+![image](https://github.com/user-attachments/assets/c7172a45-e53a-4ead-994a-1eb604e72029)
+
