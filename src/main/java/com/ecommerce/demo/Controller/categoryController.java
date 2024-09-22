@@ -1,6 +1,6 @@
 package com.ecommerce.demo.Controller;
 
-import jdk.jfr.Category;
+import com.ecommerce.demo.Model.categoryModel; // Correct import for your model
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,14 +11,16 @@ import java.util.List;
 
 @RestController
 public class categoryController {
-    private List<Category> categories = new ArrayList<>();
+    //datatype of categories is categoryModel which is defined in categoryModel.java
+    private List<categoryModel> categories = new ArrayList<>();
     @GetMapping("/api/public/categories")
-    public List<Category> getAllCategories(){
+    public List<categoryModel> getAllCategories(){
         return categories;
     }
 
     @PostMapping("/api/public/categories")
-    public String createCategory(@RequestBody Category category){
+    public String createCategory(@RequestBody categoryModel categoryInput){
+        categories.add(categoryInput);
         return "Category added successfully";
     }
 
