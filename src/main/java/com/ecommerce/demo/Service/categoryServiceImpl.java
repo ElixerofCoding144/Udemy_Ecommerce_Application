@@ -21,4 +21,12 @@ public class categoryServiceImpl implements categoryService{
         category.setCategoryId(nextId++);//automatically increase the id when a new category will be added
         categories.add(category);
     }
+
+    @Override
+    public String deleteCategory(Long categoryID) {
+        categoryModel category = categories.stream().filter(c -> c.getCategoryId().equals(categoryID)).findFirst().orElse(null);
+        if (category==null) return "CategoryID doesn't exist. :/";
+        categories.remove(category);
+        return "Category: " + category.getCategoryName() + " with category ID: " + categoryID + " is deleted successfully!! :)";
+    }
 }

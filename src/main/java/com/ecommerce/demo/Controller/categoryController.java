@@ -3,10 +3,7 @@ package com.ecommerce.demo.Controller;
 import com.ecommerce.demo.Model.categoryModel; //import for your model
 import com.ecommerce.demo.Service.categoryService; //import for your service
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,4 +28,17 @@ public class categoryController {
         return "Category added successfully";
     }
 
+    //Without @PathVariable, Spring Boot cannot map the URL parameter to the method's argument.
+    // i.e. we were getting the following error after hitting api
+    //    {
+    //        "timestamp": "2024-09-29T19:43:20.207+00:00",
+    //            "status": 500,
+    //            "error": "Internal Server Error",
+    //            "path": "/api/admin/categories/1"
+    //    }
+    @DeleteMapping("/api/admin/categories/{categoryID}")
+    public String deleteCategory(@PathVariable Long categoryID){
+        String status = categoryService.deleteCategory(categoryID);
+        return status;
+    }
 }

@@ -9,5 +9,6 @@ import java.util.List;
 public interface categoryService {
     List<categoryModel> getAllCategories();
     void createCategory(categoryModel category);
+    String deleteCategory(Long categoryID);
 }
 
