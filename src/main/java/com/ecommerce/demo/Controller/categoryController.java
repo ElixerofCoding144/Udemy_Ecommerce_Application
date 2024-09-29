@@ -1,6 +1,8 @@
 package com.ecommerce.demo.Controller;
 
-import com.ecommerce.demo.Model.categoryModel; // Correct import for your model
+import com.ecommerce.demo.Model.categoryModel; //import for your model
+import com.ecommerce.demo.Service.categoryService; //import for your service
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,16 +13,21 @@ import java.util.List;
 
 @RestController
 public class categoryController {
-    //datatype of categories is categoryModel which is defined in categoryModel.java
-    private List<categoryModel> categories = new ArrayList<>();
+    @Autowired
+    private categoryService categoryService;//datatype of categoryService is being injected here
+//This is a constructor injection
+//    public categoryController(categoryService categoryService) {
+//        this.categoryService = categoryService;
+//    }
+
     @GetMapping("/api/public/categories")
     public List<categoryModel> getAllCategories(){
-        return categories;
+        return categoryService.getAllCategories();
     }
 
     @PostMapping("/api/public/categories")
     public String createCategory(@RequestBody categoryModel categoryInput){
-        categories.add(categoryInput);
+        categoryService.createCategory(categoryInput);
         return "Category added successfully";
     }
 
