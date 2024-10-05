@@ -1,7 +1,9 @@
 package com.ecommerce.demo.Service;
 
 import com.ecommerce.demo.Model.categoryModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class categoryServiceImpl implements categoryService{
 
     @Override
     public String deleteCategory(Long categoryID) {
-        categoryModel category = categories.stream().filter(c -> c.getCategoryId().equals(categoryID)).findFirst().orElse(null);
+        categoryModel category = categories.stream().filter(c -> c.getCategoryId().equals(categoryID)).findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found"));
         if (category==null) return "CategoryID doesn't exist. :/";
         categories.remove(category);
         return "Category: " + category.getCategoryName() + " with category ID: " + categoryID + " is deleted successfully!! :)";
